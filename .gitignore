@@ -1,0 +1,4 @@
+*.uvguix.*
+JLinkLog.txt
+MDK-ARM/STM32V6_systemview_demo/*
+
