@@ -327,7 +327,7 @@
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
             <uC99>1</uC99>
-            <uGnu>0</uGnu>
+            <uGnu>1</uGnu>
             <useXO>0</useXO>
             <v6Lang>5</v6Lang>
             <v6LangP>3</v6LangP>
@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F429xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/STM32F4xx_HAL_Driver/Inc;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/CMSIS/Include</IncludePath>
+              <IncludePath>../Core/Inc;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/STM32F4xx_HAL_Driver/Inc;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/CMSIS/Include;..\ThirdUtils\SystemView\Config;..\ThirdUtils\SystemView\SEGGER</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -517,6 +517,26 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>SystemView</GroupName>
+          <Files>
+            <File>
+              <FileName>SEGGER_SYSVIEW_Config_NoOS.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\ThirdUtils\SystemView\Sample\NoOS\Config\Cortex-M\SEGGER_SYSVIEW_Config_NoOS.c</FilePath>
+            </File>
+            <File>
+              <FileName>SEGGER_RTT.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\ThirdUtils\SystemView\SEGGER\SEGGER_RTT.c</FilePath>
+            </File>
+            <File>
+              <FileName>SEGGER_SYSVIEW.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\ThirdUtils\SystemView\SEGGER\SEGGER_SYSVIEW.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>::CMSIS</GroupName>
         </Group>
       </Groups>
@@ -535,5 +555,14 @@
     </components>
     <files/>
   </RTE>
+
+  <LayerInfo>
+    <Layers>
+      <Layer>
+        <LayName>STM32V6_systemview_demo</LayName>
+        <LayPrjMark>1</LayPrjMark>
+      </Layer>
+    </Layers>
+  </LayerInfo>
 
 </Project>

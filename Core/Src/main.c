@@ -25,6 +25,7 @@
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
 #include "string.h"
+#include "SEGGER_SYSVIEW.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -46,6 +47,8 @@
 
 /* USER CODE BEGIN PV */
 char log_buf[50];
+volatile unsigned int _TestFunc0Cnt;
+volatile unsigned int _TestFunc1Cnt;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -56,7 +59,30 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+static char* _TestFunc2(char* str)
+{
+	SEGGER_SYSVIEW_RecordString(35, str);
+	HAL_Delay(5);
+	SEGGER_SYSVIEW_RecordEndCall(35);
+	return "_TestFunc2 end";
+}
 
+static void _TestFunc1(void)
+{
+	SEGGER_SYSVIEW_RecordVoid(34);
+	_TestFunc2("_TestFunc2 start");
+	HAL_Delay(10);
+	SEGGER_SYSVIEW_RecordEndCall(34);
+}
+
+static void _TestFunc0(void)
+{
+	SEGGER_SYSVIEW_RecordVoid(33);
+	HAL_Delay(10);
+	_TestFunc1();
+	HAL_Delay(10);
+	SEGGER_SYSVIEW_RecordEndCall(33);
+}
 /* USER CODE END 0 */
 
 /**
@@ -83,7 +109,9 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
+	SEGGER_SYSVIEW_Conf();
+	SEGGER_SYSVIEW_Start();
+	SEGGER_SYSVIEW_OnIdle();
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -101,6 +129,7 @@ int main(void)
   {
 	  HAL_Delay(1000);
 	  HAL_UART_Transmit(&huart1, (uint8_t*)log_buf, strlen(log_buf), 100);
+	  _TestFunc0();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
