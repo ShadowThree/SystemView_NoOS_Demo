@@ -26,9 +26,16 @@ SystemView/SEGGER/SEGGER_SYSVIEW.c
 
 #define SEGGER_SYSVIEW_CORE	SEGGER_SYSVIEW_CORE_CM3
 ```
-6. 按照`[main.c](./Core/Src/main.c)`的方式使用`SystemView`的`API`即可；
+6. 按照`[main.c](./Core/Src/main.c)`的方式使用`SystemView`的`API`:
+- 在需要监测的函数前后调用`SEGGER_SYSVIEW_Recordxxx()`和`SEGGER_SYSVIEW_RecordEndCall()`；(不同的函参对应不同的`API`)
+- 在需要监测的中断前后调用`SEGGER_SYSVIEW_RecordEnterISR()`和`SEGGER_SYSVIEW_RecordExitISR()`;
 7. 编译并烧录运行，然后在电脑上打开`SystemView`，并点击左上角工具栏中的绿色三角形即可；
 
 ## 说明
 1. 必须使用`J-Link`才能使用`SystemView`;
 2. `JLink`只需要通过`SWDIO`，`SWCLK`以及`GND`三根线和`MCU`连接;
+
+## SystemView Overflow
+1. 将`SystemView`的记录停止，重新开始记录试试；
+2. 在`SysTick_Handler`中断处理函数中加上`SEGGER_SYSVIEW_TickCnt++;`
+3. 将`SEGGER_RTT_Conf.h`中的`BUFFER_SIZE_UP`加大；
