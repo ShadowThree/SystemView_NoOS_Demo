@@ -23,6 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "dbger.h"
 #include "stdio.h"
 #include "string.h"
 #include "SEGGER_SYSVIEW.h"
@@ -63,6 +64,7 @@ static char* _TestFunc2(char* str)
 {
 	SEGGER_SYSVIEW_RecordString(35, str);
 	HAL_Delay(5);
+	LOG_DBG("%s\n", str);
 	SEGGER_SYSVIEW_RecordEndCall(35);
 	return "_TestFunc2 end";
 }
@@ -109,6 +111,10 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
+	LOG_INIT();
+	LOG_DBG("\n\nSTM32F429BI SystemView Demo\n");
+	LOG_ERR("LOG module test\n");
+	
 	SEGGER_SYSVIEW_Conf();
 	SEGGER_SYSVIEW_Start();
 	SEGGER_SYSVIEW_OnIdle();
@@ -130,6 +136,7 @@ int main(void)
 	  HAL_Delay(1000);
 	  HAL_UART_Transmit(&huart1, (uint8_t*)log_buf, strlen(log_buf), 100);
 	  _TestFunc0();
+	  LOG_DBG("delay 1s\n");
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

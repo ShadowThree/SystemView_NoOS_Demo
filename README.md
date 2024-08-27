@@ -34,8 +34,10 @@ SystemView/SEGGER/SEGGER_SYSVIEW.c
 ## 说明
 1. 必须使用`J-Link`才能使用`SystemView`;
 2. `JLink`只需要通过`SWDIO`，`SWCLK`以及`GND`三根线和`MCU`连接;
+3. `RTT`可以同时用于`RTT`日志输出和`SystemView`事件记录；但是输出的日志还是要用`J-Link RTT Viewer`才能看到，不知道为什么`SystemView`的`Terminal`窗口看不到日志；
+4. 由于`SystemView`已经导入了`SEGGER_RTT.c`文件，所以使用[`dbger`](https://github.com/ShadowThree/dbger.git)就不用再导入这个文件了；
 
-## SystemView Overflow
+## ERROR: SystemView Overflow
 1. 将`SystemView`的记录停止，重新开始记录试试；
 2. 在`SysTick_Handler`中断处理函数中加上`SEGGER_SYSVIEW_TickCnt++;`
 3. 将`SEGGER_RTT_Conf.h`中的`BUFFER_SIZE_UP`加大；
